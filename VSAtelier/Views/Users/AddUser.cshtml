@@ -1,0 +1,65 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+@model RegisterVM
+@{
+ViewData["Title"] = "AddUser";
+}
+<h1>Dodaj użytkownika</h1>
+<form method="post">
+    
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <div class="mb-2">
+        <label asp-for="username" class="control-label"></label>
+        <input asp-for="username" class="form-control" aria-required="true" />
+        <span asp-validation-for="username" class="text-danger"></span>
+    </div>
+    <div class="mb-2">
+        <label asp-for="name" class="control-label"></label>
+        <input asp-for="name" class="form-control" />
+        <span asp-validation-for="name" class="text-danger"></span>
+    </div>
+    <div class="mb-2">
+        <label asp-for="surname" class="control-label"></label>
+        <input asp-for="surname" class="form-control" />
+        <span asp-validation-for="surname" class="text-danger"></span>
+    </div>
+    <div class="mb-2">
+        <label asp-for="email" class="control-label"></label>
+        <input asp-for="email" class="form-control" aria-required="true" />
+        <span asp-validation-for="email" class="text-danger"></span>
+    </div>
+    <div class="mb-2">
+        <label asp-for="password" class="control-label"></label>
+        <input asp-for="password" class="form-control" aria-required="true" />
+        <span asp-validation-for="password" class="text-danger"></span>
+        <img src="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/icons/exclamation-triangle-fill.svg" title="Hasło musi zawierać co najmniej jedną literę, jedną cyfrę i jeden znak specjalny oraz mieć co najmniej 8 znaków.">
+    </div>
+    <div class="mb-2">
+        <label asp-for="confirmPassword" class="control-label"></label>
+        <input asp-for="confirmPassword" class="form-control" aria-required="true" />
+        <span asp-validation-for="confirmPassword" class="text-danger"></span>
+    </div>
+    <div class="mb-2">
+        <label asp-for="address" class="control-label"></label>
+        <textarea asp-for="address" class="form-control" rows="2" aria-required="true"></textarea>
+        <span asp-validation-for="address" class="text-danger"></span>
+    </div>
+    <div class="mb-2">
+        <label asp-for="PhoneNumber" class="control-label"></label>
+        <input asp-for="PhoneNumber" class="form-control" aria-required="true" />
+        <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+    </div>
+    <div class="mt-1">
+        <button type="submit" class="btn btn-primary">Dodaj</button>
+    </div>
+</form>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

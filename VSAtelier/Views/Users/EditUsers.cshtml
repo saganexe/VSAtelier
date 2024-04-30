@@ -1,0 +1,55 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+@model VSAtelier.Models.Entities.User
+
+<h1>Edytuj użytkownika</h1>
+
+@if(Model is null)
+{
+    <p>Użytkownik nie istnieje</p>
+}
+else{
+<form method="post">
+        <div class="mt-1">
+            <label class="form-label">Id</label>
+            <input type="text" class="form-control" asp-for="Id" readonly/>
+        </div>
+
+    <div class="mt-1">
+        <label class="form-label">Imie</label>
+        <input type="text" class="form-control" asp-for="name" />
+    </div>
+    <div class="mt-1">
+        <label class="form-label">Nazwisko</label>
+        <input type="text" class="form-control" asp-for="surname" />
+    </div>
+    <div class="mt-1">
+        <label class="form-label">Email</label>
+        <input type="text" class="form-control" asp-for="Email" />
+    </div>
+    <div class="mt-1">
+        <label class="form-label">Numer telefonu</label>
+        <input type="text" class="form-control" asp-for="PhoneNumber" />
+    </div>
+        <div class="mt-1">
+            <label class="role">Uprawnienia:</label>
+            <select id="role" name="role" class="form-control">
+                @foreach (var role in ViewBag.RoleList)
+                {
+                   var isSelected = (role == ViewBag.CurrentUserRole);
+                    <option value="@role" selected="@isSelected">@role</option>
+                }
+            </select>
+        </div>
+
+
+    <div class="mt-1">
+        <button type="submit" class="btn btn-primary">Zmień dane</button>
+        <button type="submit" class="btn btn-danger ms-3" asp-action="DeleteUsers" asp-controller="Users">Delete</button>
+    </div>
+</form>
+}

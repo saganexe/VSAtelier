@@ -1,0 +1,59 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+@model VSAtelier.Models.Entities.Forum
+@using VSAtelier.Models.Entities
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<User> signInManager
+
+@{
+    ViewData["Title"] = "Violas Forum";
+}
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"]</title>
+    <link rel="stylesheet" href="@Url.Content("~/css/site.css")" /> 
+</head>
+
+<h1>Podziel się swoim dziełem</h1>
+<table class="forumTable">
+    <tbody>
+        @foreach (var item in Model.Forums)
+{
+    <tr>
+        <td class="comUser">
+            @Html.DisplayFor(modelItem => item.Name)
+            <p></p>
+            @Html.DisplayFor(modelItem => item.Role)
+        </td>
+        <td class="com">
+            @Html.DisplayFor(modelItem => item.textForm)
+        </td>
+                <td class="#">
+            <img src="~/images/@item.imagePhoto" class="rounded-circle" width="50" height="50" />
+        </td>
+    </tr>
+}
+    </tbody>
+    </table>
+@if (signInManager.IsSignedIn(User))
+{
+    <form asp-action="Forum" method="post" enctype="multipart/form-data">
+        <div class="form-group">
+            <label asp-for="textForm" class="control-label">Napisz komentarz</label>
+            <input asp-for="textForm" class="form-control" />
+            <span asp-validation-for="textForm" class="text-danger"></span>
+        </div>
+        <div class="form-group">       
+            <input asp-for="imagePhoto" class="form-control" type="file"/>
+            <span asp-validation-for="imagePhoto" class="text-danger"></span>
+        </div>
+        <button type="submit" class="btn btn-primary">Create</button>
+        @ViewBag.Message
+    </form>
+}

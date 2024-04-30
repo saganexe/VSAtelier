@@ -1,0 +1,32 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@using Microsoft.AspNetCore.Identity
+@using VSAtelier.Models.Entities
+@inject SignInManager<User> signInManager
+
+<ul class="navbar-nav">
+    @if (signInManager.IsSignedIn(User))
+    {
+        <li class="nav-item dropdown">
+            <a class="dropdown-item" href="#" id="navbarDropdown">
+                Witaj @User.Identity!.Name!
+            </a>
+            <div class="dropdown-menu " aria-labelledby="navbarDropdown">
+        <li><a class="dropdown-item" asp-action="Logout" asp-controller="Account">Wyloguj</a></li>
+
+        </div>
+        </li>
+    }
+    else
+    {
+        <li class="nav-item">
+            <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="Register">Zarejestruj</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="Login">Zaloguj</a>
+        </li>
+    }
+</ul>
